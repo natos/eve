@@ -6,6 +6,9 @@
  * 	@autor: Natan Santolo (natan.santolo@gmail.com)
  *  @version: 1.2
  *  @revision: 26/01/11
+ *
+ *	TODO: Add events to a define element
+ *
  */
 
 var eve = (function(win,doc) {
