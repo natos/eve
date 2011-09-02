@@ -18,18 +18,18 @@ var eve = (function(win,doc) {
  *	@private _add
  *  @returns function(){ }
  */
-    var _add = function(that) {
+    var _add = (function(that) {
         
         return (ie) ?
-            function(event,handler) {
-                return doc.attachEvent("on"+event,handler);
+            function(ele, event, handler) {
+                return (ele || doc).attachEvent("on"+event,handler);
             }:
-            function(event,handler,bubble) {
+            function(ele, event, handler, bubble) {
                 bubble = bubble || true; // default bubble
-                return doc.addEventListener(event,handler,bubble);
+                return (ele || doc).addEventListener(event,handler,bubble);
             };
             
-    }(this);
+    })(this);
 
 /**
  *	@private _rem
@@ -38,12 +38,12 @@ var eve = (function(win,doc) {
 	var _rem = function(that) {
 	   
         return (ie) ?
-            function(event,handler) {
-                return element.detachEvent("on"+event,handler);
+            function(ele, event, handler) {
+                return (ele || doc).detachEvent("on"+event,handler);
             }:
-            function(event,handler,bubble) {
+            function(ele, event, handler, bubble) {
                 bubble = bubble || true; // default bubble
-                return doc.removeEventListener(event,handler,bubble);
+                return (ele || doc).removeEventListener(event,handler,bubble);
             };
 
 	}(this);
